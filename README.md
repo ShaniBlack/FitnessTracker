@@ -26,7 +26,7 @@ morgan
 ## Installation
 npm install
 node server.js
-You can also visit the heroku site 
+You can also visit [Heroku](https://sheltered-citadel-65249.herokuapp.com/)
 
 ## Usage
 This project is used to easily add, update, and keep track of daily workouts.
