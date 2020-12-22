@@ -38,7 +38,18 @@ const workoutSchema = new Schema({
         }
     }
     ]
-})
+},
+
+{
+// toJSON: {
+//     // include any virtual properties when data is requested
+//     virtuals: true
+//   }
+// }
+// );
+
+// workoutSchema.virtual("totalDuration").get(function () {
+// })
 
 // first arg name of collection, name of schema
 const Workout = mongoose.model("Workout", workoutSchema)

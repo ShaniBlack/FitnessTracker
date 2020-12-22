@@ -1,51 +1,70 @@
 const db = require("../models");
 
-db.Workout.create({ name: "Campus Library" })
-  .then(dbLibrary => {
-    console.log(dbLibrary);
+module.exports = function(app) {
+app.get("/api/workouts", => (req,res) {
+  db.Workout.find({})
+  .then(workout => {
+    res.json(workout);
   })
-  .catch(({message}) => {
-    console.log(message);
+  .catch(err => {
+    res.json(err);
   });
+});
+  
 
-app.post("/submit", ({body}, res) => {
-  db.Book.create(body)
-    .then(({_id}) => db.Library.findOneAndUpdate({}, { $push: { books: _id } }, { new: true }))
-    .then(dbLibrary => {
-      res.json(dbLibrary);
+  // creates new workout
+app.post("/workouts", (req, res) => {
+  db.Workout.create(req.body)
+    .then(workout => {
+      res.json(workout);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/books", (req, res) => {
-  db.Book.find({})
-    .then(dbBook => {
-      res.json(dbBook);
+// Updates workout
+app.put("api/workouts/:id", function({body, params}, res) {
+  db.Workout.findByIdAndUpdate(params.id,
+    { push: {exercises.body }},
+    { new: true }
+)
+.then(workout => {
+  res.json(workout);
+})
+.catch(err) => {
+  res.json(err);
+}
+});
+
+// Calls workout data from API
+app.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .then(workout => {
+      res.json(workout);
     })
     .catch(err => {
       res.json(err);
     });
 });
 
-app.get("/library", (req, res) => {
-  db.Library.find({})
-    .then(dbLibrary => {
-      res.json(dbLibrary);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
+// app.get("/library", (req, res) => {
+//   db.Library.find({})
+//     .then(workout => {
+//       res.json(workout);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
 
-app.get("/populated", (req, res) => {
-  db.Library.find({})
-    .populate("books")
-    .then(dbLibrary => {
-      res.json(dbLibrary);
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
+// app.get("/populated", (req, res) => {
+//   db.Library.find({})
+//     .populate("books")
+//     .then(workout => {
+//       res.json(workout);
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
