@@ -1,8 +1,9 @@
 const db = require("../models");
 
 module.exports = function(app) {
-app.get("/api/workouts", => (req,res) {
+app.get("/api/workouts", (req,res) => {
   db.Workout.find({})
+
   .then(workout => {
     res.json(workout);
   })
@@ -10,10 +11,21 @@ app.get("/api/workouts", => (req,res) {
     res.json(err);
   });
 });
-  
+};
+
+// Calls workout data from API
+app.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .then(workout => {
+      res.json(workout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
 
   // creates new workout
-app.post("/workouts", (req, res) => {
+app.post("/api/workouts", (req, res) => {
   db.Workout.create(req.body)
     .then(workout => {
       res.json(workout);
@@ -32,21 +44,12 @@ app.put("api/workouts/:id", function({body, params}, res) {
 .then(workout => {
   res.json(workout);
 })
-.catch(err) => {
+.catch(err => {
   res.json(err);
-}
 });
 
-// Calls workout data from API
-app.get("/api/workouts", (req, res) => {
-  db.Workout.find({})
-    .then(workout => {
-      res.json(workout);
-    })
-    .catch(err => {
-      res.json(err);
-    });
 });
+
 
 // app.get("/library", (req, res) => {
 //   db.Library.find({})
