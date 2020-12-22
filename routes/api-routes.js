@@ -50,25 +50,5 @@ router.put("/api/workouts/:id", function({body, params}, res) {
 
 });
 
-module.exports = router
+module.exports = routerd
 
-// router.get("/library", (req, res) => {
-//   db.Library.find({})
-//     .then(workout => {
-//       res.json(workout);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
-
-// router.get("/populated", (req, res) => {
-//   db.Library.find({})
-//     .populate("books")
-//     .then(workout => {
-//       res.json(workout);
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });

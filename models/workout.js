@@ -40,16 +40,20 @@ const workoutSchema = new Schema({
     ]
 },
 
-// {
-// toJSON: {
-//     // include any virtual properties when data is requested
-//     virtuals: true
-//   }
-// }
+{
+toJSON: {
+    // include any virtual properties when data is requested
+    virtuals: true
+  }
+}
 );
 
-// workoutSchema.virtual("totalDuration").get(function () {
-// })
+workoutSchema.virtual("totalDuration").get(function () {
+    return this.exercises.reduce((total, exercise) => {
+        return total + exercise.duration
+        // specific to .reduce - tells which index to start at. if not noted will start at index 1
+    }, 0)
+})
 
 // first arg name of collection, name of schema
 const Workout = mongoose.model("Workout", workoutSchema)
