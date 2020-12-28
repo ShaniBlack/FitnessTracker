@@ -50,5 +50,5 @@ router.put("/api/workouts/:id", function({body, params}, res) {
 
 });
 
-module.exports = routerd
+module.exports = router
 
