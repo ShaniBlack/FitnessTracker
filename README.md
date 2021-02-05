@@ -1,7 +1,10 @@
-## Fitness Tracker
+# Fitness Tracker
 
 ## Description
 This program uses the node.js application to log, update, and view daily workouts.
+
+![Screenshot](./public/assets/images/fitnessTracker.PNG)
+![Screenshot](./public/assets/images/fitnessGraphs.PNG)
 
 Here are some of the technologies that were used to the create this program:
 JavaScript
@@ -12,9 +15,6 @@ MongoDB
 mongoose
 express
 morgan
-
-
-## Demo
 
 ## Table of Contents
   * [Installation](#installation)
